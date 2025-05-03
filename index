@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Should I Text Her?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #d32f2f;
+            margin-bottom: 30px;
+        }
+        .question-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .yes-btn {
+            background-color: #4caf50;
+            color: white;
+        }
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        .progress {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        .result {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .score {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin: 10px 0;
+        }
+        .result-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #d32f2f;
+        }
+        .result-text {
+            margin-bottom: 20px;
+        }
+        .pickup-line {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-left: 4px solid #d32f2f;
+        }
+        .restart-btn {
+            background-color: #2196f3;
+            color: white;
+            margin-top: 20px;
+        }
+        .bonus-question {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Should I Text Her?</h1>
+    <div class="progress">Question 1 of 10</div>
+    <div class="question-container">
+        <div class="question">Are you drinking alcohol?</div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="answerQuestion(true)">YES</button>
+            <button class="no-btn" onclick="answerQuestion(false)">NO</button>
+        </div>
+    </div>
+    <div class="result">
+        <div class="score">Score: <span id="final-score">0</span>/10</div>
+        <div class="result-title"></div>
+        <div class="result-text"></div>
+        <div class="pickup-line"></div>
+        <button class="restart-btn" onclick="restartQuiz()">Take the Quiz Again</button>
+    </div>
+
+    <script>
+        const questions = [
+            "Are you drinking alcohol?",
+            "Did your friend already tell you not to text her?",
+            "Did she ignore your last message?",
+            "Did she post a story and now you feel something?",
+            "Are you texting because you're bored?",
+            "Are you hoping she magically changed in 3 days?",
+            "Does she have a boyfriend?",
+            "Is it midnight?",
+            "Do you think she is wife material?",
+            "Do you think she's busy?"
+        ];
+
+        const positiveAnswers = [
+            false, false, false, true, false, 
+            false, false, false, true, false
+        ];
+
+        const pickupLines = [
+            "Are you a magician? Because whenever I look at your photos, everyone else disappears.",
+            "Is your name Google? Because you have everything I've been searching for.",
+            "Do you believe in love at first text, or should I message you again?",
+            "If you were a vegetable, you'd be a cute-cumber.",
+            "Are you a bank loan? Because you have my interest.",
+            "Do you have a map? I keep getting lost in your DMs.",
+            "Is your dad a boxer? Because you're a knockout!",
+            "Are you made of copper and tellurium? Because you're Cu-Te.",
+            "If you were a fruit, you'd be a fine-apple.",
+            "Is your name Wi-Fi? Because I'm really feeling a connection."
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let bonusAsked = false;
+        const elements = {
+            question: document.querySelector('.question'),
+            progress: document.querySelector('.progress'),
+            container: document.querySelector('.question-container'),
+            result: document.querySelector('.result'),
+            title: document.querySelector('.result-title'),
+            text: document.querySelector('.result-text'),
+            pickup: document.querySelector('.pickup-line'),
+            score: document.getElementById('final-score'),
+            buttons: document.querySelector('.buttons')
+        };
+
+        function answerQuestion(userAnswer) {
+            if (userAnswer === positiveAnswers[currentQuestion]) score++;
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                updateQuestion();
+            } else {
+                handleBonusCheck();
+            }
+        }
+
+        function handleBonusCheck() {
+            if (score >= 9 && !bonusAsked) {
+                showBonusQuestion();
+            } else {
+                showFinalResult();
+            }
+        }
+
+        function showBonusQuestion() {
+            bonusAsked = true;
+            elements.question.innerHTML = '<span class="bonus-question">BONUS LIE DETECTOR:</span> Are you lying?';
+            elements.progress.textContent = "Final Verification";
+            elements.buttons.innerHTML = `
+                <button class="yes-btn" onclick="handleLie(true)">YES</button>
+                <button class="no-btn" onclick="handleLie(false)">NO</button>
+            `;
+        }
+
+        function handleLie(isLying) {
+            if (isLying) {
+                score = 8;
+                elements.question.innerHTML = "🚩 Lies detected! Adjusting score...";
+            } else {
+                elements.question.innerHTML = "✅ Truth verified! Proceeding...";
+            }
+            setTimeout(showFinalResult, 1500);
+        }
+
+        function showFinalResult() {
+            elements.container.style.display = 'none';
+            elements.result.style.display = 'block';
+            elements.score.textContent = score;
+
+            let result;
+            if (score <= 3) {
+                result = {
+                    title: "🚨 DON'T TEXT! 🚨",
+                    text: `${score}/10: Put the phone down! Better chances winning the lottery!`
+                };
+            } else if (score <= 6) {
+                result = {
+                    title: "🤷 ASK A FRIEND 🤷",
+                    text: `${score}/10: This needs a group chat conference!`
+                };
+            } else if (score <= 8) {
+                result = {
+                    title: "😎 PLAY IT COOL 😎",
+                    text: `${score}/10: Text about something boring like:<br>"Did you see that email?"`
+                };
+            } else {
+                result = {
+                    title: "💘 TEXT NOW! 💘",
+                    text: `${score}/10: She's waiting! Don't screw this up!`
+                };
+            }
+
+            elements.title.textContent = result.title;
+            elements.text.innerHTML = result.text;
+            elements.pickup.textContent = `Try this line: "${pickupLines[Math.floor(Math.random() * pickupLines.length)]}"`;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            bonusAsked = false;
+            elements.container.style.display = 'block';
+            elements.result.style.display = 'none';
+            elements.buttons.innerHTML = `
+                <button class="yes-btn" onclick="answerQuestion(true)">YES</button>
+                <button class="no-btn" onclick="answerQuestion(false)">NO</button>
+            `;
+            updateQuestion();
+        }
+
+        function updateQuestion() {
+            elements.question.textContent = questions[currentQuestion];
+            elements.progress.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+    </script>
+</body>
+</html>
