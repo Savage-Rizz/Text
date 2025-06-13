@@ -30,29 +30,73 @@
             background-color: #f0f7ff;
             color: #333;
             line-height: 1.6;
-            padding: 0;
+            padding: 0; 
             font-size: 16px;
-            min-height: 100vh;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
         }
         
+        .initial-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .initial-screen h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .start-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background-color: white;
+            border-radius: 0; 
+            box-shadow: none; 
             overflow: hidden;
-            min-height: 100vh;
-            width: 100%;
+            min-height: 100vh; 
+            width: 100%; 
+            display: none; 
         }
         
         header {
-            background: var(--header-bg);
+            background: var(--header-bg); 
             color: white;
-            padding: 15px 20px;
+            padding: 15px 20px; 
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: sticky;
+            position: sticky; 
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -61,8 +105,8 @@
         .header-date-nav {
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-size: 1.3rem;
+            gap: 15px; 
+            font-size: 1.3rem; 
             font-weight: 600;
         }
         
@@ -70,7 +114,7 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.5rem; 
             cursor: pointer;
             padding: 5px;
             border-radius: 50%;
@@ -82,27 +126,35 @@
         }
         
         .header-date {
-            color: white;
+            color: white; 
         }
 
+        h1 { 
+            display: none; 
+        }
+
+        .date-controls { 
+            display: none;
+        }
+        
         .content {
-            padding: 20px;
-            background-color: #f0f7ff;
+            padding: 20px; 
+            background-color: #f0f7ff; 
         }
 
         .top-controls {
             margin-bottom: 20px;
             display: flex;
-            justify-content: flex-start;
+            justify-content: flex-start; 
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 10px; 
+            flex-wrap: wrap; 
         }
         
-        .simple-add-dept-btn, .copy-prev-day-btn {
-            background-color: white;
-            color: var(--dark);
-            border: 1px solid #ccc;
+        .simple-add-dept-btn, .copy-prev-day-btn { 
+            background-color: white; 
+            color: var(--dark); 
+            border: 1px solid #ccc; 
             padding: 8px 15px;
             border-radius: 50px;
             cursor: pointer;
@@ -112,7 +164,7 @@
             align-items: center;
             gap: 5px;
             transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
         }
 
         .simple-add-dept-btn:hover, .copy-prev-day-btn:hover {
@@ -122,14 +174,14 @@
         }
 
         .simple-add-dept-btn i, .copy-prev-day-btn i {
-            font-size: 0.9em;
+            font-size: 0.9em; 
         }
         
         .department {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 8px; 
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
+            margin-bottom: 20px; 
             overflow: hidden;
             transition: transform 0.3s;
         }
@@ -139,9 +191,9 @@
         }
         
         .department-header {
-            background: linear-gradient(135deg, #4c82c3, #3a68a6);
+            background: linear-gradient(135deg, #4c82c3, #3a68a6); 
             color: white;
-            padding: 12px 20px;
+            padding: 12px 20px; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -151,15 +203,15 @@
         
         .department-name {
             font-weight: bold;
-            font-size: 1.4rem;
+            font-size: 1.4rem; 
             display: flex;
             align-items: center;
             gap: 10px;
-            text-transform: uppercase;
+            text-transform: uppercase; 
         }
         
         .department-name i {
-            font-size: 1.2em;
+            font-size: 1.2em; 
         }
 
         .department-actions {
@@ -168,11 +220,11 @@
         }
         
         .dept-btn {
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.15); 
             color: white;
             border: none;
             padding: 6px 12px;
-            border-radius: 5px;
+            border-radius: 5px; 
             cursor: pointer;
             font-weight: 500;
             font-size: 0.85rem;
@@ -189,15 +241,15 @@
         .beds-container {
             display: flex;
             flex-wrap: wrap;
-            padding: 15px;
-            gap: 15px;
-            justify-content: flex-start;
+            padding: 15px; 
+            gap: 15px; 
+            justify-content: flex-start; 
         }
         
         .bed {
-            width: 80px;
-            height: 80px;
-            border-radius: 12px;
+            width: 80px; 
+            height: 80px; 
+            border-radius: 12px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -210,13 +262,13 @@
         
         .bed-number {
             font-weight: bold;
-            font-size: 1.8rem;
-            line-height: 1;
-            margin-bottom: 2px;
+            font-size: 1.8rem; 
+            line-height: 1; 
+            margin-bottom: 2px; 
         }
         
         .bed-status {
-            font-size: 0.9rem;
+            font-size: 0.9rem; 
             font-weight: 500;
             line-height: 1;
         }
@@ -232,12 +284,12 @@
         }
         
         .bed-dc-trf {
-            background-color: var(--dc-trf-color);
+            background-color: var(--dc-trf-color); 
             color: white;
         }
         
         .bed:hover {
-            transform: scale(1.05);
+            transform: scale(1.05); 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
         
@@ -263,14 +315,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
-            font-weight: normal;
+            font-size: 2.5rem; 
+            font-weight: normal; 
         }
-        .add-bed .bed-status { display: none; }
-        .add-bed .bed-number {
+        .add-bed .bed-status { display: none; } 
+        .add-bed .bed-number { 
             line-height: 1;
             margin-bottom: 0;
-            font-size: 2.5rem;
+            font-size: 2.5rem; 
         }
         
         .modal {
@@ -291,7 +343,7 @@
             background-color: white;
             padding: 25px;
             border-radius: 12px;
-            width: 90%;
+            width: 90%; 
             max-width: 450px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             margin: auto;
@@ -349,9 +401,9 @@
         
         .status-options {
             display: flex;
-            gap: 12px;
+            gap: 12px; 
             margin-bottom: 20px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; 
         }
         
         .status-option {
@@ -359,8 +411,8 @@
             border-radius: 8px;
             cursor: pointer;
             border: 2px solid transparent;
-            flex: 1;
-            min-width: 120px;
+            flex: 1; 
+            min-width: 120px; 
             text-align: center;
             font-weight: 600;
             font-size: 0.9rem;
@@ -422,27 +474,99 @@
         .cancel-btn:hover {
             background-color: #7f8c8d;
         }
-
-        /* Loading indicator */
-        .loading {
+        
+        .history-modal .modal-content {
+            width: 95%;
+            max-width: 700px;
+        }
+        
+        .history-list {
+            max-height: 450px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fcfcfc;
+        }
+        
+        .history-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .history-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 8px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            font-size: 1rem;
+        }
+        
+        .history-department {
+            font-weight: 600;
+            margin: 10px 0 5px 0;
+            color: var(--primary);
+            font-size: 0.95rem;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .history-bed {
+            display: flex;
             align-items: center;
-            padding: 20px;
+            gap: 8px;
+            margin-left: 20px;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
         }
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
+        
+        .history-bed-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            border-top: 4px solid var(--primary);
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
+            flex-shrink: 0;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .history-bed-completed {
+            background-color: var(--success);
         }
-
+        
+        .history-bed-dc-trf { 
+            background-color: var(--dc-trf-color);
+        }
+        
+        .history-bed-pending {
+            background-color: var(--warning);
+        }
+        
+        .no-history {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .today-highlight {
+            background: var(--primary); 
+            color: white;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+        
         /* Media queries for smaller screens */
         @media (max-width: 768px) {
             .header-date-nav {
@@ -490,11 +614,11 @@
                 font-size: 0.9rem;
             }
             .status-option {
-                min-width: unset;
-                flex-grow: 1;
+                min-width: unset; 
+                flex-grow: 1; 
             }
              .top-controls {
-                justify-content: center;
+                justify-content: center; 
             }
         }
 
@@ -529,7 +653,7 @@
             .beds-container {
                 padding: 10px;
                 gap: 10px;
-                justify-content: center;
+                justify-content: center; 
             }
             .bed {
                 width: 65px;
@@ -565,16 +689,28 @@
                 font-size: 0.85rem;
             }
             .modal-actions {
-                flex-direction: column;
+                flex-direction: column; 
                 gap: 8px;
             }
             .modal-btn {
-                width: 100%;
+                width: 100%; 
+            }
+            .history-list {
+                max-height: 350px;
+            }
+            .history-item {
+                padding: 12px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="initial-screen" id="initialScreen">
+        <h2>Physiotherapy Patient Tracker</h2>
+        <p>Organize and track patient treatments daily.</p>
+        <button class="start-button" id="startButton">Start Application</button>
+    </div>
+
     <div class="container" id="mainContainer">
         <header>
             <div class="header-date-nav">
@@ -592,12 +728,10 @@
                 <button class="copy-prev-day-btn" id="copyPreviousDayBtn">
                     <i class="fas fa-copy"></i> Copy Previous Day
                 </button>
-            </div>
+                </div>
             
             <div id="departmentsContainer">
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                </div>
+                <p id="noDepartmentsMessage" style="text-align: center; color: var(--gray); padding: 20px; font-style: italic; display: none;">No departments added yet. Click "Add New Department" to get started!</p>
             </div>
         </div>
     </div>
@@ -650,19 +784,19 @@
             </div>
         </div>
     </div>
-
-    <!-- Firebase SDK -->
+    
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
-    
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+
     <script>
-        // Your Firebase configuration
+        // --- Firebase Configuration ---
         const firebaseConfig = {
             apiKey: "AIzaSyDAUsHLgTYmj3a-euySuWAk93C99asdEF4",
             authDomain: "physio-traker.firebaseapp.com",
             databaseURL: "https://physio-traker-default-rtdb.firebaseio.com",
             projectId: "physio-traker",
-            storageBucket: "physio-traker.appspot.com",
+            storageBucket: "physio-traker.firebasestorage.app",
             messagingSenderId: "966541115025",
             appId: "1:966541115025:web:4ad7b04be7f58c2efcc930",
             measurementId: "G-TRH5CKN25N"
@@ -671,22 +805,26 @@
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
-        
+        const auth = firebase.auth();
+
+        // Reference to your daily records in Firebase
+        const dailyRecordsRef = database.ref('dailyRecords');
+
         // --- Global Variables ---
         let currentDate = new Date(); // Initialize with the current date
         const ADMIN_PASSWORD = "54321"; // Define the password
         
-        // References to Firebase database
-        const dataRef = database.ref('physioTrackingData');
-        let departmentsRef;
-        let bedStatusesRef;
+        // This will now hold the data fetched from Firebase for the *current day*
+        let allDataForCurrentDate = { departments: [], bedStatuses: {} }; 
+        let editingDepartmentId = null; 
+        let selectedBed = null; 
         
-        // Track current state
-        let editingDepartmentId = null;
-        let selectedBed = null;
-        
-        // DOM elements
         const departmentsContainer = document.getElementById('departmentsContainer');
+        const noDepartmentsMessage = document.getElementById('noDepartmentsMessage');
+        const initialScreen = document.getElementById('initialScreen');
+        const startButton = document.getElementById('startButton');
+        const mainContainer = document.getElementById('mainContainer');
+        const copyPreviousDayBtn = document.getElementById('copyPreviousDayBtn');
         
         // --- Helper Functions ---
         
@@ -704,24 +842,24 @@
             return `${year}-${month}-${day}`;
         }
         
-        // Set up Firebase references for the current date
-        function setupFirebaseReferences() {
+        // --- Firebase Data Operations ---
+
+        // This function will push updates for the current day's data to Firebase
+        function saveCurrentDayDataToFirebase() {
             const dateKey = formatDateForData(currentDate);
-            departmentsRef = dataRef.child(dateKey).child('departments');
-            bedStatusesRef = dataRef.child(dateKey).child('bedStatuses');
+            dailyRecordsRef.child(dateKey).set(allDataForCurrentDate)
+                .catch(error => {
+                    console.error("Error saving data to Firebase:", error);
+                    alert("Error saving data. Please check your internet connection.");
+                });
         }
-        
-        // Generate a unique ID
-        function generateUniqueId() {
-            return '_' + Math.random().toString(36).substr(2, 9);
-        }
-        
+
         // --- Date Navigation ---
         
         function updateDateDisplay() {
             document.getElementById('currentDate').textContent = formatDate(currentDate);
-            setupFirebaseReferences();
-            loadDepartments();
+            // When date changes, we need to re-fetch data for the new date
+            listenForDailyUpdates(); 
         }
         
         document.getElementById('prevDayBtn').addEventListener('click', () => {
@@ -755,7 +893,7 @@
         
         window.addEventListener('click', (e) => {
             modals.forEach(modal => {
-                if (e.target === modal) {
+                if (e.target === modal) { 
                     closeModal(modal.id);
                 }
             });
@@ -763,126 +901,104 @@
         
         // --- Department Management ---
         
-        function loadDepartments() {
-            departmentsContainer.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+        function renderDepartments() {
+            departmentsContainer.innerHTML = ''; // Clear existing departments
             
-            // Listen for changes in departments
-            departmentsRef.on('value', (snapshot) => {
-                const departments = snapshot.val() || [];
-                renderDepartments(departments);
-            });
-        }
-        
-        function renderDepartments(departments) {
-            if (departments.length === 0) {
-                departmentsContainer.innerHTML = '<p style="text-align: center; color: var(--gray); padding: 20px; font-style: italic;">No departments added yet. Click "Add New Department" to get started!</p>';
+            const currentDayDepartments = allDataForCurrentDate.departments || [];
+            const currentDayBedStatuses = allDataForCurrentDate.bedStatuses || {};
+            
+            if (currentDayDepartments.length === 0) {
+                noDepartmentsMessage.style.display = 'block';
                 return;
+            } else {
+                noDepartmentsMessage.style.display = 'none';
             }
             
-            let html = '';
-            
-            departments.forEach(department => {
-                let bedsHtml = '';
+            currentDayDepartments.forEach(department => {
+                const departmentDiv = document.createElement('div');
+                departmentDiv.classList.add('department');
+                departmentDiv.dataset.id = department.id;
                 
-                // Get bed statuses for this department
-                bedStatusesRef.child(department.id).on('value', (bedSnapshot) => {
-                    const bedStatuses = bedSnapshot.val() || {};
-                    
-                    department.beds.forEach(bedNumber => {
-                        const bedStatus = bedStatuses[bedNumber]?.status || 'pending';
-                        const bedNotes = bedStatuses[bedNumber]?.notes || '';
-                        const hasNote = bedNotes.trim() !== '';
-                        
-                        bedsHtml += `
-                            <div class="bed bed-${bedStatus}" data-department-id="${department.id}" data-bed-number="${bedNumber}" data-notes="${bedNotes}">
-                                <div class="bed-number">${bedNumber}</div>
-                                <div class="bed-status">${bedStatus === 'completed' ? 'Done' : (bedStatus === 'dc-trf' ? 'D.C / TRF' : 'Pending')}</div>
-                                ${hasNote ? '<div class="note-indicator">N</div>' : ''}
-                            </div>
-                        `;
-                    });
+                let bedsHtml = '';
+                const departmentBedStatuses = currentDayBedStatuses[department.id] || {};
+                
+                department.beds.forEach(bedNumber => {
+                    const bedStatus = departmentBedStatuses[bedNumber]?.status || 'pending';
+                    const bedNotes = departmentBedStatuses[bedNumber]?.notes || '';
+                    const hasNote = bedNotes.trim() !== '';
                     
                     bedsHtml += `
-                        <div class="bed add-bed" data-department-id="${department.id}">
-                            <div class="bed-number">+</div>
+                        <div class="bed bed-${bedStatus}" data-department-id="${department.id}" data-bed-number="${bedNumber}" data-notes="${bedNotes}">
+                            <div class="bed-number">${bedNumber}</div>
+                            <div class="bed-status">${bedStatus === 'completed' ? 'Done' : (bedStatus === 'dc-trf' ? 'D.C / TRF' : 'Pending')}</div>
+                            ${hasNote ? '<div class="note-indicator">N</div>' : ''}
                         </div>
                     `;
-                    
-                    const departmentDiv = document.createElement('div');
-                    departmentDiv.classList.add('department');
-                    departmentDiv.dataset.id = department.id;
-                    departmentDiv.innerHTML = `
-                        <div class="department-header">
-                            <div class="department-name">
-                                <i class="${department.icon || 'fas fa-hospital-user'}"></i> ${department.name}
-                            </div>
-                            <div class="department-actions">
-                                <button class="dept-btn edit-dept-btn" data-id="${department.id}"><i class="fas fa-edit"></i> Edit</button>
-                                <button class="dept-btn delete-dept-btn" data-id="${department.id}"><i class="fas fa-trash"></i> Delete</button>
-                            </div>
-                        </div>
-                        <div class="beds-container">
-                            ${bedsHtml}
-                        </div>
-                    `;
-                    
-                    // Replace existing department or add new one
-                    const existingDept = departmentsContainer.querySelector(`[data-id="${department.id}"]`);
-                    if (existingDept) {
-                        existingDept.replaceWith(departmentDiv);
-                    } else {
-                        departmentsContainer.appendChild(departmentDiv);
-                    }
-                    
-                    attachBedEventListeners();
-                    attachDepartmentActionListeners();
                 });
+                
+                bedsHtml += `
+                    <div class="bed add-bed" data-department-id="${department.id}">
+                        <div class="bed-number">+</div>
+                    </div>
+                `;
+                
+                departmentDiv.innerHTML = `
+                    <div class="department-header">
+                        <div class="department-name">
+                            <i class="${department.icon || 'fas fa-hospital-user'}"></i> ${department.name}
+                        </div>
+                        <div class="department-actions">
+                            <button class="dept-btn edit-dept-btn" data-id="${department.id}"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="dept-btn delete-dept-btn" data-id="${department.id}"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                    <div class="beds-container">
+                        ${bedsHtml}
+                    </div>
+                `;
+                departmentsContainer.appendChild(departmentDiv);
             });
+            
+            attachBedEventListeners();
+            attachDepartmentActionListeners();
         }
         
         function attachDepartmentActionListeners() {
             document.querySelectorAll('.edit-dept-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const deptId = e.currentTarget.dataset.id;
+                    const department = allDataForCurrentDate.departments.find(d => d.id === deptId);
                     
-                    departmentsRef.once('value').then((snapshot) => {
-                        const departments = snapshot.val() || [];
-                        const department = departments.find(d => d.id === deptId);
-                        
-                        if (department) {
-                            editingDepartmentId = deptId;
-                            document.getElementById('departmentModalHeader').textContent = 'Edit Department';
-                            document.getElementById('departmentName').value = department.name;
-                            document.getElementById('bedNumbers').value = department.beds.join(',');
-                            openModal('departmentModal');
-                        }
-                    });
+                    if (department) {
+                        editingDepartmentId = deptId;
+                        document.getElementById('departmentModalHeader').textContent = 'Edit Department';
+                        document.getElementById('departmentName').value = department.name;
+                        document.getElementById('bedNumbers').value = department.beds.join(',');
+                        openModal('departmentModal');
+                    }
                 });
             });
             
             document.querySelectorAll('.delete-dept-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const deptId = e.currentTarget.dataset.id;
+                    // --- PASSWORD CHECK FOR DELETION ---
                     const password = prompt('Enter password to delete department:');
-                    
                     if (password === ADMIN_PASSWORD) {
                         if (confirm('Are you sure you want to delete this department and its bed data for this day?')) {
-                            departmentsRef.once('value').then((snapshot) => {
-                                const departments = snapshot.val() || [];
-                                const updatedDepartments = departments.filter(d => d.id !== deptId);
-                                
-                                // Update departments
-                                departmentsRef.set(updatedDepartments).then(() => {
-                                    // Remove bed statuses for this department
-                                    bedStatusesRef.child(deptId).remove().then(() => {
-                                        alert('Department deleted successfully.');
-                                    });
-                                });
-                            });
+                            allDataForCurrentDate.departments = allDataForCurrentDate.departments.filter(d => d.id !== deptId);
+                            
+                            if (allDataForCurrentDate.bedStatuses[deptId]) {
+                                delete allDataForCurrentDate.bedStatuses[deptId];
+                            }
+                            
+                            saveCurrentDayDataToFirebase(); // Save changes to Firebase
+                            alert('Department deleted successfully.');
                         }
                     } else {
                         alert('Incorrect password. Department not deleted.');
                     }
+                    // --- END PASSWORD CHECK ---
                 });
             });
         }
@@ -914,39 +1030,31 @@
                 }
             }
 
-            departmentsRef.once('value').then((snapshot) => {
-                const departments = snapshot.val() || [];
-                
-                if (editingDepartmentId) {
-                    // Edit existing department
-                    const updatedDepartments = departments.map(d => {
-                        if (d.id === editingDepartmentId) {
-                            return {
-                                ...d,
-                                name: deptName,
-                                beds: bedNumbers
-                            };
-                        }
-                        return d;
-                    });
-                    
-                    departmentsRef.set(updatedDepartments).then(() => {
-                        closeModal('departmentModal');
-                    });
-                } else {
-                    // Add new department
-                    const newDepartment = {
-                        id: generateUniqueId(),
-                        name: deptName,
-                        beds: bedNumbers,
-                        icon: 'fas fa-hospital-user'
-                    };
-                    
-                    departmentsRef.set([...departments, newDepartment]).then(() => {
-                        closeModal('departmentModal');
-                    });
+            // Ensure departments array exists
+            if (!allDataForCurrentDate.departments) {
+                allDataForCurrentDate.departments = [];
+            }
+            
+            if (editingDepartmentId) {
+                // Edit existing department for the current day
+                const departmentIndex = allDataForCurrentDate.departments.findIndex(d => d.id === editingDepartmentId);
+                if (departmentIndex !== -1) {
+                    allDataForCurrentDate.departments[departmentIndex].name = deptName;
+                    allDataForCurrentDate.departments[departmentIndex].beds = bedNumbers;
                 }
-            });
+            } else {
+                // Add new department for the current day
+                const newDepartment = {
+                    id: database.ref().push().key, // Generate Firebase push key for unique ID
+                    name: deptName,
+                    beds: bedNumbers,
+                    icon: 'fas fa-hospital-user' 
+                };
+                allDataForCurrentDate.departments.push(newDepartment);
+            }
+            
+            saveCurrentDayDataToFirebase(); // Save changes to Firebase
+            closeModal('departmentModal');
         });
         
         document.getElementById('cancelDepartmentBtn').addEventListener('click', () => {
@@ -962,90 +1070,59 @@
                         const departmentId = this.dataset.departmentId;
                         const bedNumber = this.dataset.bedNumber;
                         
-                        departmentsRef.once('value').then((snapshot) => {
-                            const departments = snapshot.val() || [];
-                            const department = departments.find(d => d.id === departmentId);
+                        const department = allDataForCurrentDate.departments.find(d => d.id === departmentId);
+                        
+                        if (department) {
+                            selectedBed = { departmentId, bedNumber: parseInt(bedNumber) };
+                            document.getElementById('modalHeader').textContent = `Bed #${bedNumber} - ${department.name}`;
                             
-                            if (department) {
-                                selectedBed = { departmentId, bedNumber: parseInt(bedNumber) };
-                                document.getElementById('modalHeader').textContent = `Bed #${bedNumber} - ${department.name}`;
-                                
-                                // Get current bed status
-                                bedStatusesRef.child(departmentId).child(bedNumber).once('value').then((bedSnapshot) => {
-                                    const bedRecord = bedSnapshot.val();
-                                    
-                                    // Set status
-                                    document.querySelectorAll('.status-option').forEach(option => {
-                                        option.classList.remove('selected');
-                                        if (bedRecord && option.dataset.status === bedRecord.status) {
-                                            option.classList.add('selected');
-                                        } else if (!bedRecord && option.dataset.status === 'pending') {
-                                            option.classList.add('selected');
-                                        }
-                                    });
-                                    
-                                    // Set notes
-                                    document.getElementById('bedNotes').value = bedRecord?.notes || '';
-                                    
-                                    openModal('bedModal');
-                                });
-                            }
-                        });
+                            const bedRecord = allDataForCurrentDate.bedStatuses?.[departmentId]?.[bedNumber];
+                            
+                            // Set status
+                            document.querySelectorAll('.status-option').forEach(option => {
+                                option.classList.remove('selected');
+                                if (bedRecord && option.dataset.status === bedRecord.status) {
+                                    option.classList.add('selected');
+                                } else if (!bedRecord && option.dataset.status === 'pending') { 
+                                     option.classList.add('selected');
+                                }
+                            });
+                            
+                            // Set notes
+                            document.getElementById('bedNotes').value = bedRecord?.notes || '';
+                            
+                            openModal('bedModal');
+                        }
                     });
                 } else {
-                    // Handle adding a new bed to an existing department
+                    // Handle adding a new bed to an existing department for the current day
                     bedElement.addEventListener('click', function() {
                         const departmentId = this.dataset.departmentId;
                         
-                        departmentsRef.once('value').then((snapshot) => {
-                            const departments = snapshot.val() || [];
-                            const department = departments.find(d => d.id === departmentId);
-                            
-                            if (department) {
-                                let newBedNumber;
-                                let isValidInput = false;
-                                
-                                const addBed = () => {
-                                    newBedNumber = prompt(`Enter new bed number for ${department.name}:`);
-                                    
-                                    if (newBedNumber === null) return; // User cancelled
-                                    
-                                    const bedNum = parseInt(newBedNumber.trim());
-                                    
-                                    if (!isNaN(bedNum) {
-                                        if (bedNum <= 0) {
-                                            alert('Please enter a positive number.');
-                                            addBed();
-                                        } else if (department.beds.includes(bedNum)) {
-                                            alert(`Bed ${bedNum} already exists in ${department.name}. Please enter a unique number.`);
-                                            addBed();
-                                        } else {
-                                            // Add the new bed number
-                                            const updatedDepartments = departments.map(d => {
-                                                if (d.id === departmentId) {
-                                                    const newBeds = [...d.beds, bedNum].sort((a,b) => a-b);
-                                                    return { ...d, beds: newBeds };
-                                                }
-                                                return d;
-                                            });
-                                            
-                                            departmentsRef.set(updatedDepartments).then(() => {
-                                                // Initialize bed status as pending
-                                                bedStatusesRef.child(departmentId).child(bedNum).set({
-                                                    status: 'pending',
-                                                    notes: ''
-                                                });
-                                            });
-                                        }
-                                    } else {
-                                        alert('Invalid input. Please enter a number.');
-                                        addBed();
-                                    }
-                                };
-                                
-                                addBed();
+                        const department = allDataForCurrentDate.departments.find(d => d.id === departmentId);
+                        
+                        if (department) {
+                            let newBedNumber;
+                            let isValidInput = false;
+                            while (!isValidInput) {
+                                newBedNumber = prompt(`Enter new bed number for ${department.name}:`);
+                                if (newBedNumber === null) { // User cancelled
+                                    isValidInput = true;
+                                    return;
+                                }
+                                const bedNum = parseInt(newBedNumber.trim());
+                                if (!isNaN(bedNum) && bedNum > 0 && !department.beds.includes(bedNum)) {
+                                    department.beds.push(bedNum);
+                                    department.beds.sort((a,b) => a-b); 
+                                    saveCurrentDayDataToFirebase(); // Save changes to Firebase
+                                    isValidInput = true;
+                                } else if (isNaN(bedNum) || bedNum <= 0) {
+                                    alert('Invalid input. Please enter a positive number.');
+                                } else if (department.beds.includes(bedNum)) {
+                                    alert(`Bed ${bedNum} already exists in ${department.name} for this day. Please enter a unique number.`);
+                                }
                             }
-                        });
+                        }
                     });
                 }
             });
@@ -1066,14 +1143,21 @@
             const selectedStatus = document.querySelector('.status-option.selected')?.dataset.status || 'pending';
             const notes = document.getElementById('bedNotes').value.trim();
             
-            // Update bed status in Firebase
-            bedStatusesRef.child(selectedBed.departmentId).child(selectedBed.bedNumber).set({
+            if (!allDataForCurrentDate.bedStatuses) {
+                allDataForCurrentDate.bedStatuses = {};
+            }
+            if (!allDataForCurrentDate.bedStatuses[selectedBed.departmentId]) {
+                allDataForCurrentDate.bedStatuses[selectedBed.departmentId] = {};
+            }
+            
+            allDataForCurrentDate.bedStatuses[selectedBed.departmentId][selectedBed.bedNumber] = {
                 status: selectedStatus,
                 notes: notes
-            }).then(() => {
-                closeModal('bedModal');
-                selectedBed = null;
-            });
+            };
+            
+            saveCurrentDayDataToFirebase(); // Save changes to Firebase
+            closeModal('bedModal');
+            selectedBed = null; 
         });
         
         document.getElementById('cancelBedBtn').addEventListener('click', () => {
@@ -1082,76 +1166,120 @@
         });
         
         // --- Copy Previous Day Functionality ---
-        document.getElementById('copyPreviousDayBtn').addEventListener('click', () => {
+        copyPreviousDayBtn.addEventListener('click', async () => {
             const password = prompt('Enter password to copy previous day\'s data:');
-            
             if (password === ADMIN_PASSWORD) {
-                const currentDayDate = new Date(currentDate);
+                const currentDayDate = new Date(currentDate); 
                 const prevDayDate = new Date(currentDate);
                 prevDayDate.setDate(prevDayDate.getDate() - 1);
                 
-                const currentDayKey = formatDateForData(currentDayDate);
-                const prevDayKey = formatDateForData(prevDayDate);
-                
-                const prevDayRef = database.ref('physioTrackingData').child(prevDayKey);
-                const currentDayRef = database.ref('physioTrackingData').child(currentDayKey);
-                
-                prevDayRef.once('value').then((snapshot) => {
-                    const prevDayData = snapshot.val();
-                    
-                    if (!prevDayData || (!prevDayData.departments && !prevDayData.bedStatuses)) {
+                const currentDayDataKey = formatDateForData(currentDayDate);
+                const prevDayDataKey = formatDateForData(prevDayDate);
+
+                try {
+                    const snapshot = await dailyRecordsRef.child(prevDayDataKey).once('value');
+                    const prevDayRecord = snapshot.val();
+
+                    if (!prevDayRecord || (prevDayRecord.departments?.length === 0 && Object.keys(prevDayRecord.bedStatuses || {}).length === 0)) {
                         alert("No data found for the previous day to copy.");
                         return;
                     }
-                    
+
                     if (confirm("Are you sure you want to copy the previous day's data? All copied beds will be set to 'Pending' status. 'D.C / TRF' beds will not be copied.")) {
-                        const prevDepartments = prevDayData.departments || [];
-                        const prevBedStatuses = prevDayData.bedStatuses || {};
                         
-                        const newDepartments = [];
-                        const newBedStatuses = {};
-                        
-                        // Process departments and bed statuses
-                        prevDepartments.forEach(dept => {
-                            const newDept = { ...dept, beds: [] };
-                            newBedStatuses[dept.id] = {};
-                            
-                            dept.beds.forEach(bedNumber => {
-                                const prevBedStatus = prevBedStatuses[dept.id]?.[bedNumber]?.status;
-                                
-                                // Only copy if the previous status is NOT 'dc-trf'
-                                if (prevBedStatus !== 'dc-trf') {
-                                    newDept.beds.push(bedNumber);
-                                    newBedStatuses[dept.id][bedNumber] = {
-                                        status: 'pending', // Reset to pending
-                                        notes: prevBedStatuses[dept.id]?.[bedNumber]?.notes || '' // Copy notes
+                        const newDepartmentsForCurrentDay = [];
+                        const newBedStatusesForCurrentDay = {};
+
+                        const departmentsToCopy = prevDayRecord.departments || [];
+                        const bedStatusesToCopy = prevDayRecord.bedStatuses || {};
+
+                        departmentsToCopy.forEach(prevDept => {
+                            const copiedDept = JSON.parse(JSON.stringify(prevDept)); 
+                            copiedDept.beds = []; 
+
+                            newBedStatusesForCurrentDay[copiedDept.id] = {}; 
+
+                            const prevDeptBedStatuses = bedStatusesToCopy[prevDept.id] || {};
+
+                            prevDept.beds.forEach(bedNumber => {
+                                const prevBedData = prevDeptBedStatuses[bedNumber];
+
+                                if (prevBedData?.status !== 'dc-trf') {
+                                    copiedDept.beds.push(bedNumber); 
+                                    
+                                    newBedStatusesForCurrentDay[copiedDept.id][bedNumber] = {
+                                        status: 'pending', 
+                                        notes: prevBedData?.notes || '' 
                                     };
                                 }
                             });
-                            
-                            // Only add department if it has beds
-                            if (newDept.beds.length > 0) {
-                                newDepartments.push(newDept);
+
+                            if (copiedDept.beds.length > 0) {
+                                newDepartmentsForCurrentDay.push(copiedDept);
                             }
                         });
-                        
-                        // Update current day's data
-                        currentDayRef.set({
-                            departments: newDepartments,
-                            bedStatuses: newBedStatuses
-                        }).then(() => {
-                            alert("Previous day's data copied successfully! (D.C / TRF patients were not copied, and other beds are now 'Pending').");
-                        });
+
+                        allDataForCurrentDate.departments = newDepartmentsForCurrentDay;
+                        allDataForCurrentDate.bedStatuses = newBedStatusesForCurrentDay;
+
+                        saveCurrentDayDataToFirebase(); // Save the copied data to Firebase for the current day
+                        alert("Previous day's data copied successfully! (D.C / TRF patients were not copied, and other beds are now 'Pending').");
                     }
-                });
+                } catch (error) {
+                    console.error("Error copying previous day's data:", error);
+                    alert("Error copying data. Please try again.");
+                }
             } else {
                 alert('Incorrect password. Data not copied.');
             }
         });
         
+        // --- Firebase Realtime Listener ---
+        let currentDayListener = null; // To store the active listener
+        
+        function listenForDailyUpdates() {
+            const dateKey = formatDateForData(currentDate);
+
+            // Detach previous listener if it exists
+            if (currentDayListener) {
+                currentDayListener.off(); // Detach the 'value' listener
+            }
+
+            // Attach new listener for the current date's data
+            currentDayListener = dailyRecordsRef.child(dateKey);
+            currentDayListener.on('value', (snapshot) => {
+                const data = snapshot.val();
+                // Update the local allDataForCurrentDate with data from Firebase
+                allDataForCurrentDate = data || { departments: [], bedStatuses: {} };
+                renderDepartments(); // Re-render the UI with the fetched data
+            }, (error) => {
+                console.error("Error fetching daily records:", error);
+                alert("Error fetching data from server. Please refresh or try again.");
+            });
+        }
+
         // --- Initialization ---
-        setupFirebaseReferences();
-        updateDateDisplay();
+        
+        // Event listener for the start button
+        startButton.addEventListener('click', () => {
+            initialScreen.style.display = 'none'; 
+            mainContainer.style.display = 'block'; 
+            
+            // Authenticate anonymously when the app starts
+            auth.signInAnonymously()
+                .then(() => {
+                    console.log("Signed in anonymously to Firebase.");
+                    updateDateDisplay(); // Start displaying and listening for data
+                })
+                .catch((error) => {
+                    console.error("Error signing in anonymously:", error);
+                    alert("Failed to connect to the tracking system. Please check your internet connection.");
+                });
+        });
+
+        // Initial call to hide main container on load until start button is clicked
+        mainContainer.style.display = 'none';
+
     </script>
 </body>
 </html>
