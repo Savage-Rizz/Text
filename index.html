@@ -3,261 +3,1283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Should I Text Her?</title>
+    <title>Physiotherapy Patient Tracking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dc-trf-color: #e74c3c;
+            --light: #f5f7fa;
+            --dark: #34495e;
+            --gray: #95a5a6;
+            --header-bg: #4c82c3;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #ffebee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f7ff;
             color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
+            line-height: 1.6;
+            padding: 0; 
+            font-size: 16px;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
         }
-        h1 {
-            color: #d32f2f;
-            margin-bottom: 30px;
-        }
-        .question-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            min-height: 150px;
+        
+        .initial-screen {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
         }
-        .question {
-            font-size: 18px;
-            font-weight: bold;
+
+        .initial-screen h2 {
+            color: var(--secondary);
             margin-bottom: 20px;
+            font-size: 1.8rem;
         }
-        .buttons {
+
+        .start-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 0; 
+            box-shadow: none; 
+            overflow: hidden;
+            min-height: 100vh; 
+            width: 100%; 
+            display: none; 
+        }
+        
+        header {
+            background: var(--header-bg); 
+            color: white;
+            padding: 15px 20px; 
+            text-align: center;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            align-items: center;
+            position: sticky; 
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        button {
-            padding: 10px 25px;
+
+        .header-date-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px; 
+            font-size: 1.3rem; 
+            font-weight: 600;
+        }
+        
+        .nav-arrow-btn {
+            background: none;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            color: white;
+            font-size: 1.5rem; 
             cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        
+        .nav-arrow-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-date {
+            color: white; 
+        }
+
+        h1 { 
+            display: none; 
+        }
+
+        .date-controls { 
+            display: none;
+        }
+        
+        .content {
+            padding: 20px; 
+            background-color: #f0f7ff; 
+        }
+
+        .top-controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+            gap: 10px; 
+            flex-wrap: wrap; 
+        }
+        
+        .simple-add-dept-btn, .copy-prev-day-btn { 
+            background-color: white; 
+            color: var(--dark); 
+            border: 1px solid #ccc; 
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
+        }
+
+        .simple-add-dept-btn:hover, .copy-prev-day-btn:hover {
+            background-color: #f8f8f8;
+            border-color: #aaa;
+            transform: translateY(-1px);
+        }
+
+        .simple-add-dept-btn i, .copy-prev-day-btn i {
+            font-size: 0.9em; 
+        }
+        
+        .department {
+            background-color: white;
+            border-radius: 8px; 
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px; 
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .department:hover {
+            transform: translateY(-3px);
+        }
+        
+        .department-header {
+            background: linear-gradient(135deg, #4c82c3, #3a68a6); 
+            color: white;
+            padding: 12px 20px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .department-name {
+            font-weight: bold;
+            font-size: 1.4rem; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase; 
+        }
+        
+        .department-name i {
+            font-size: 1.2em; 
+        }
+
+        .department-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dept-btn {
+            background-color: rgba(255, 255, 255, 0.15); 
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px; 
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
             transition: all 0.3s;
         }
-        .yes-btn {
-            background-color: #4caf50;
-            color: white;
+        
+        .dept-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
-        .no-btn {
-            background-color: #f44336;
-            color: white;
+        
+        .beds-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 15px; 
+            gap: 15px; 
+            justify-content: flex-start; 
         }
-        button:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
+        
+        .bed {
+            width: 80px; 
+            height: 80px; 
+            border-radius: 12px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
         }
-        .progress {
-            margin-bottom: 20px;
+        
+        .bed-number {
             font-weight: bold;
-            color: #d32f2f;
+            font-size: 1.8rem; 
+            line-height: 1; 
+            margin-bottom: 2px; 
         }
-        .result {
+        
+        .bed-status {
+            font-size: 0.9rem; 
+            font-weight: 500;
+            line-height: 1;
+        }
+        
+        .bed-pending {
+            background-color: var(--warning);
+            color: white;
+        }
+        
+        .bed-completed {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .bed-dc-trf {
+            background-color: var(--dc-trf-color); 
+            color: white;
+        }
+        
+        .bed:hover {
+            transform: scale(1.05); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .note-indicator {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .add-bed {
+            background-color: var(--gray);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem; 
+            font-weight: normal; 
+        }
+        .add-bed .bed-status { display: none; } 
+        .add-bed .bed-number { 
+            line-height: 1;
+            margin-bottom: 0;
+            font-size: 2.5rem; 
+        }
+        
+        .modal {
             display: none;
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .score {
-            font-size: 28px;
-            font-weight: bold;
-            color: #d32f2f;
-            margin: 10px 0;
-        }
-        .result-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #d32f2f;
-        }
-        .result-text {
-            margin-bottom: 20px;
-        }
-        .pickup-line {
-            font-style: italic;
-            margin: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
             padding: 10px;
-            background-color: #f8f8f8;
-            border-left: 4px solid #d32f2f;
         }
-        .restart-btn {
-            background-color: #2196f3;
+        
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%; 
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+        
+        .modal-header {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .status-options {
+            display: flex;
+            gap: 12px; 
+            margin-bottom: 20px;
+            flex-wrap: wrap; 
+        }
+        
+        .status-option {
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            flex: 1; 
+            min-width: 120px; 
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .status-option.selected {
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-option.completed {
+            background-color: var(--success);
             color: white;
+        }
+        
+        .status-option[data-status="dc-trf"] {
+            background-color: var(--dc-trf-color);
+            color: white;
+        }
+
+        .status-option[data-status="pending"] {
+            background-color: var(--warning);
+            color: white;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
             margin-top: 20px;
         }
-        .bonus-question {
-            color: #2e7d32;
+        
+        .modal-btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        
+        .save-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .cancel-btn {
+            background-color: var(--gray);
+            color: white;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .history-modal .modal-content {
+            width: 95%;
+            max-width: 700px;
+        }
+        
+        .history-list {
+            max-height: 450px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fcfcfc;
+        }
+        
+        .history-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .history-date {
             font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+        }
+        
+        .history-department {
+            font-weight: 600;
+            margin: 10px 0 5px 0;
+            color: var(--primary);
+            font-size: 0.95rem;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .history-bed {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 20px;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .history-bed-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .history-bed-completed {
+            background-color: var(--success);
+        }
+        
+        .history-bed-dc-trf { 
+            background-color: var(--dc-trf-color);
+        }
+        
+        .history-bed-pending {
+            background-color: var(--warning);
+        }
+        
+        .no-history {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .today-highlight {
+            background: var(--primary); 
+            color: white;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+        
+        /* Media queries for smaller screens */
+        @media (max-width: 768px) {
+            .header-date-nav {
+                font-size: 1.2rem;
+            }
+            .nav-arrow-btn {
+                font-size: 1.3rem;
+            }
+            .content {
+                padding: 15px;
+            }
+            .department-name {
+                font-size: 1.2rem;
+            }
+            .bed {
+                width: 70px;
+                height: 70px;
+            }
+            .bed-number {
+                font-size: 1.6rem;
+            }
+            .bed-status {
+                font-size: 0.8rem;
+            }
+            .add-bed {
+                font-size: 2.2rem;
+            }
+             .add-bed .bed-number {
+                font-size: 2.2rem;
+            }
+            .note-indicator {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+            .modal-content {
+                padding: 20px;
+                max-width: 90%;
+            }
+            .modal-header {
+                font-size: 1.2rem;
+            }
+            .modal-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            .status-option {
+                min-width: unset; 
+                flex-grow: 1; 
+            }
+             .top-controls {
+                justify-content: center; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 12px 15px;
+            }
+            .header-date-nav {
+                font-size: 1.1rem;
+                gap: 10px;
+            }
+            .nav-arrow-btn {
+                font-size: 1.1rem;
+            }
+            .content {
+                padding: 10px;
+            }
+            .simple-add-dept-btn, .copy-prev-day-btn {
+                padding: 7px 12px;
+                font-size: 0.85rem;
+            }
+            .department-header {
+                padding: 10px 15px;
+            }
+            .department-name {
+                font-size: 1.1rem;
+            }
+            .dept-btn {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            .beds-container {
+                padding: 10px;
+                gap: 10px;
+                justify-content: center; 
+            }
+            .bed {
+                width: 65px;
+                height: 65px;
+            }
+            .bed-number {
+                font-size: 1.5rem;
+            }
+            .bed-status {
+                font-size: 0.75rem;
+            }
+            .add-bed {
+                font-size: 2rem;
+            }
+            .add-bed .bed-number {
+                font-size: 2rem;
+            }
+            .note-indicator {
+                width: 18px;
+                height: 18px;
+                font-size: 0.65rem;
+                bottom: 3px;
+                right: 3px;
+            }
+            .modal-content {
+                padding: 15px;
+                border-radius: 8px;
+            }
+            .modal-header {
+                font-size: 1.1rem;
+            }
+            .form-group label, .form-group input, .form-group textarea, .status-option, .modal-btn {
+                font-size: 0.85rem;
+            }
+            .modal-actions {
+                flex-direction: column; 
+                gap: 8px;
+            }
+            .modal-btn {
+                width: 100%; 
+            }
+            .history-list {
+                max-height: 350px;
+            }
+            .history-item {
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Should I Text Her?</h1>
-    <div class="progress">Question 1 of 10</div>
-    <div class="question-container">
-        <div class="question">Are you drinking alcohol?</div>
-        <div class="buttons">
-            <button class="yes-btn" onclick="answerQuestion(true)">YES</button>
-            <button class="no-btn" onclick="answerQuestion(false)">NO</button>
+    <div class="initial-screen" id="initialScreen">
+        <h2>Physiotherapy Patient Tracker</h2>
+        <p>Organize and track patient treatments daily.</p>
+        <button class="start-button" id="startButton">Start Application</button>
+    </div>
+
+    <div class="container" id="mainContainer">
+        <header>
+            <div class="header-date-nav">
+                <button class="nav-arrow-btn" id="prevDayBtn"><i class="fas fa-chevron-left"></i></button>
+                <span id="currentDate" class="header-date"></span>
+                <button class="nav-arrow-btn" id="nextDayBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="top-controls">
+                <button class="simple-add-dept-btn" id="addDepartmentBtn">
+                    + Add New Department
+                </button>
+                <button class="copy-prev-day-btn" id="copyPreviousDayBtn">
+                    <i class="fas fa-copy"></i> Copy Previous Day
+                </button>
+                </div>
+            
+            <div id="departmentsContainer">
+                <p id="noDepartmentsMessage" style="text-align: center; color: var(--gray); padding: 20px; font-style: italic; display: none;">No departments added yet. Click "Add New Department" to get started!</p>
+            </div>
         </div>
     </div>
-    <div class="result">
-        <div class="score">Score: <span id="final-score">0</span>/10</div>
-        <div class="result-title"></div>
-        <div class="result-text"></div>
-        <div class="pickup-line"></div>
-        <button class="restart-btn" onclick="restartQuiz()">Take the Quiz Again</button>
+    
+    <div class="modal" id="bedModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalHeader"></span>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="status-options">
+                <div class="status-option completed" data-status="completed">Completed</div>
+                <div class="status-option" data-status="dc-trf">D.C / TRF</div>
+                <div class="status-option" data-status="pending">Pending</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="bedNotes"><i class="fas fa-notes-medical"></i> Treatment Notes:</label>
+                <textarea id="bedNotes" placeholder="Enter treatment details, exercises, or other notes..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelBedBtn">Cancel</button>
+                <button class="modal-btn save-btn" id="saveBedBtn">Save</button>
+            </div>
+        </div>
     </div>
+    
+    <div class="modal" id="departmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="departmentModalHeader">Add New Department</span>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="departmentName"><i class="fas fa-clinic-medical"></i> Department Name:</label>
+                <input type="text" id="departmentName" placeholder="e.g. Male Medicine 1">
+            </div>
+            
+            <div class="form-group">
+                <label for="bedNumbers"><i class="fas fa-bed"></i> Bed Numbers (comma separated):</label>
+                <input type="text" id="bedNumbers" placeholder="e.g. 1,2,3,4,5,7,8">
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelDepartmentBtn">Cancel</button>
+                <button class="modal-btn save-btn" id="saveDepartmentBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
 
     <script>
-        const questions = [
-            "Are you drinking alcohol?",
-            "Did your friend already tell you not to text her?",
-            "Did she ignore your last message?",
-            "Did she post a story and now you feel something?",
-            "Are you texting because you're bored?",
-            "Are you hoping she magically changed in 3 days?",
-            "Does she have a boyfriend?",
-            "Is it midnight?",
-            "Do you think she is wife material?",
-            "Do you think she's busy?"
-        ];
-
-        const positiveAnswers = [
-            false, false, false, true, false, 
-            false, false, false, true, false
-        ];
-
-        const pickupLines = [
-            "Are you a magician? Because whenever I look at your photos, everyone else disappears.",
-            "Is your name Google? Because you have everything I've been searching for.",
-            "Do you believe in love at first text, or should I message you again?",
-            "If you were a vegetable, you'd be a cute-cumber.",
-            "Are you a bank loan? Because you have my interest.",
-            "Do you have a map? I keep getting lost in your DMs.",
-            "Is your dad a boxer? Because you're a knockout!",
-            "Are you made of copper and tellurium? Because you're Cu-Te.",
-            "If you were a fruit, you'd be a fine-apple.",
-            "Is your name Wi-Fi? Because I'm really feeling a connection."
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-        let bonusAsked = false;
-        const elements = {
-            question: document.querySelector('.question'),
-            progress: document.querySelector('.progress'),
-            container: document.querySelector('.question-container'),
-            result: document.querySelector('.result'),
-            title: document.querySelector('.result-title'),
-            text: document.querySelector('.result-text'),
-            pickup: document.querySelector('.pickup-line'),
-            score: document.getElementById('final-score'),
-            buttons: document.querySelector('.buttons')
+        // --- Firebase Configuration ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyDAUsHLgTYmj3a-euySuWAk93C99asdEF4",
+            authDomain: "physio-traker.firebaseapp.com",
+            databaseURL: "https://physio-traker-default-rtdb.firebaseio.com",
+            projectId: "physio-traker",
+            storageBucket: "physio-traker.firebasestorage.app",
+            messagingSenderId: "966541115025",
+            appId: "1:966541115025:web:4ad7b04be7f58c2efcc930",
+            measurementId: "G-TRH5CKN25N"
         };
 
-        function answerQuestion(userAnswer) {
-            if (userAnswer === positiveAnswers[currentQuestion]) score++;
-            currentQuestion++;
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
 
-            if (currentQuestion < questions.length) {
-                updateQuestion();
+        // Reference to your daily records in Firebase
+        const dailyRecordsRef = database.ref('dailyRecords');
+
+        // --- Global Variables ---
+        let currentDate = new Date(); // Initialize with the current date
+        const ADMIN_PASSWORD = "54321"; // Define the password
+        
+        // This will now hold the data fetched from Firebase for the *current day*
+        let allDataForCurrentDate = { departments: [], bedStatuses: {} }; 
+        let editingDepartmentId = null; 
+        let selectedBed = null; 
+        
+        const departmentsContainer = document.getElementById('departmentsContainer');
+        const noDepartmentsMessage = document.getElementById('noDepartmentsMessage');
+        const initialScreen = document.getElementById('initialScreen');
+        const startButton = document.getElementById('startButton');
+        const mainContainer = document.getElementById('mainContainer');
+        const copyPreviousDayBtn = document.getElementById('copyPreviousDayBtn');
+        
+        // --- Helper Functions ---
+        
+        // Format date as "Month Day, Year"
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+        
+        // Format date as "YYYY-MM-DD" for data keys
+        function formatDateForData(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+        
+        // --- Firebase Data Operations ---
+
+        // This function will push updates for the current day's data to Firebase
+        function saveCurrentDayDataToFirebase() {
+            const dateKey = formatDateForData(currentDate);
+            dailyRecordsRef.child(dateKey).set(allDataForCurrentDate)
+                .catch(error => {
+                    console.error("Error saving data to Firebase:", error);
+                    alert("Error saving data. Please check your internet connection.");
+                });
+        }
+
+        // --- Date Navigation ---
+        
+        function updateDateDisplay() {
+            document.getElementById('currentDate').textContent = formatDate(currentDate);
+            // When date changes, we need to re-fetch data for the new date
+            listenForDailyUpdates(); 
+        }
+        
+        document.getElementById('prevDayBtn').addEventListener('click', () => {
+            currentDate.setDate(currentDate.getDate() - 1);
+            updateDateDisplay();
+        });
+        
+        document.getElementById('nextDayBtn').addEventListener('click', () => {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateDateDisplay();
+        });
+        
+        // --- Modal Handling ---
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                closeModal(modal.id);
+            });
+        });
+        
+        window.addEventListener('click', (e) => {
+            modals.forEach(modal => {
+                if (e.target === modal) { 
+                    closeModal(modal.id);
+                }
+            });
+        });
+        
+        // --- Department Management ---
+        
+        function renderDepartments() {
+            departmentsContainer.innerHTML = ''; // Clear existing departments
+            
+            const currentDayDepartments = allDataForCurrentDate.departments || [];
+            const currentDayBedStatuses = allDataForCurrentDate.bedStatuses || {};
+            
+            if (currentDayDepartments.length === 0) {
+                noDepartmentsMessage.style.display = 'block';
+                return;
             } else {
-                handleBonusCheck();
+                noDepartmentsMessage.style.display = 'none';
             }
+            
+            currentDayDepartments.forEach(department => {
+                const departmentDiv = document.createElement('div');
+                departmentDiv.classList.add('department');
+                departmentDiv.dataset.id = department.id;
+                
+                let bedsHtml = '';
+                const departmentBedStatuses = currentDayBedStatuses[department.id] || {};
+                
+                department.beds.forEach(bedNumber => {
+                    const bedStatus = departmentBedStatuses[bedNumber]?.status || 'pending';
+                    const bedNotes = departmentBedStatuses[bedNumber]?.notes || '';
+                    const hasNote = bedNotes.trim() !== '';
+                    
+                    bedsHtml += `
+                        <div class="bed bed-${bedStatus}" data-department-id="${department.id}" data-bed-number="${bedNumber}" data-notes="${bedNotes}">
+                            <div class="bed-number">${bedNumber}</div>
+                            <div class="bed-status">${bedStatus === 'completed' ? 'Done' : (bedStatus === 'dc-trf' ? 'D.C / TRF' : 'Pending')}</div>
+                            ${hasNote ? '<div class="note-indicator">N</div>' : ''}
+                        </div>
+                    `;
+                });
+                
+                bedsHtml += `
+                    <div class="bed add-bed" data-department-id="${department.id}">
+                        <div class="bed-number">+</div>
+                    </div>
+                `;
+                
+                departmentDiv.innerHTML = `
+                    <div class="department-header">
+                        <div class="department-name">
+                            <i class="${department.icon || 'fas fa-hospital-user'}"></i> ${department.name}
+                        </div>
+                        <div class="department-actions">
+                            <button class="dept-btn edit-dept-btn" data-id="${department.id}"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="dept-btn delete-dept-btn" data-id="${department.id}"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                    <div class="beds-container">
+                        ${bedsHtml}
+                    </div>
+                `;
+                departmentsContainer.appendChild(departmentDiv);
+            });
+            
+            attachBedEventListeners();
+            attachDepartmentActionListeners();
         }
+        
+        function attachDepartmentActionListeners() {
+            document.querySelectorAll('.edit-dept-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const deptId = e.currentTarget.dataset.id;
+                    const department = allDataForCurrentDate.departments.find(d => d.id === deptId);
+                    
+                    if (department) {
+                        editingDepartmentId = deptId;
+                        document.getElementById('departmentModalHeader').textContent = 'Edit Department';
+                        document.getElementById('departmentName').value = department.name;
+                        document.getElementById('bedNumbers').value = department.beds.join(',');
+                        openModal('departmentModal');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.delete-dept-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const deptId = e.currentTarget.dataset.id;
+                    // --- PASSWORD CHECK FOR DELETION ---
+                    const password = prompt('Enter password to delete department:');
+                    if (password === ADMIN_PASSWORD) {
+                        if (confirm('Are you sure you want to delete this department and its bed data for this day?')) {
+                            allDataForCurrentDate.departments = allDataForCurrentDate.departments.filter(d => d.id !== deptId);
+                            
+                            if (allDataForCurrentDate.bedStatuses[deptId]) {
+                                delete allDataForCurrentDate.bedStatuses[deptId];
+                            }
+                            
+                            saveCurrentDayDataToFirebase(); // Save changes to Firebase
+                            alert('Department deleted successfully.');
+                        }
+                    } else {
+                        alert('Incorrect password. Department not deleted.');
+                    }
+                    // --- END PASSWORD CHECK ---
+                });
+            });
+        }
+        
+        document.getElementById('addDepartmentBtn').addEventListener('click', () => {
+            editingDepartmentId = null;
+            document.getElementById('departmentModalHeader').textContent = 'Add New Department';
+            document.getElementById('departmentName').value = '';
+            document.getElementById('bedNumbers').value = '';
+            openModal('departmentModal');
+        });
+        
+        document.getElementById('saveDepartmentBtn').addEventListener('click', () => {
+            const deptName = document.getElementById('departmentName').value.trim();
+            const bedNumsInput = document.getElementById('bedNumbers').value.trim();
+            
+            if (!deptName) {
+                alert('Department name cannot be empty.');
+                return;
+            }
+            
+            let bedNumbers = [];
+            if (bedNumsInput) {
+                bedNumbers = bedNumsInput.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num) && num > 0).sort((a,b) => a-b);
+                const uniqueBedNumbers = new Set(bedNumbers);
+                if (uniqueBedNumbers.size !== bedNumbers.length) {
+                    alert('Bed numbers must be unique.');
+                    return;
+                }
+            }
 
-        function handleBonusCheck() {
-            if (score >= 9 && !bonusAsked) {
-                showBonusQuestion();
+            // Ensure departments array exists
+            if (!allDataForCurrentDate.departments) {
+                allDataForCurrentDate.departments = [];
+            }
+            
+            if (editingDepartmentId) {
+                // Edit existing department for the current day
+                const departmentIndex = allDataForCurrentDate.departments.findIndex(d => d.id === editingDepartmentId);
+                if (departmentIndex !== -1) {
+                    allDataForCurrentDate.departments[departmentIndex].name = deptName;
+                    allDataForCurrentDate.departments[departmentIndex].beds = bedNumbers;
+                }
             } else {
-                showFinalResult();
+                // Add new department for the current day
+                const newDepartment = {
+                    id: database.ref().push().key, // Generate Firebase push key for unique ID
+                    name: deptName,
+                    beds: bedNumbers,
+                    icon: 'fas fa-hospital-user' 
+                };
+                allDataForCurrentDate.departments.push(newDepartment);
             }
+            
+            saveCurrentDayDataToFirebase(); // Save changes to Firebase
+            closeModal('departmentModal');
+        });
+        
+        document.getElementById('cancelDepartmentBtn').addEventListener('click', () => {
+            closeModal('departmentModal');
+        });
+        
+        // --- Bed Status and Notes Management ---
+        
+        function attachBedEventListeners() {
+            document.querySelectorAll('.bed').forEach(bedElement => {
+                if (!bedElement.classList.contains('add-bed')) {
+                    bedElement.addEventListener('click', function() {
+                        const departmentId = this.dataset.departmentId;
+                        const bedNumber = this.dataset.bedNumber;
+                        
+                        const department = allDataForCurrentDate.departments.find(d => d.id === departmentId);
+                        
+                        if (department) {
+                            selectedBed = { departmentId, bedNumber: parseInt(bedNumber) };
+                            document.getElementById('modalHeader').textContent = `Bed #${bedNumber} - ${department.name}`;
+                            
+                            const bedRecord = allDataForCurrentDate.bedStatuses?.[departmentId]?.[bedNumber];
+                            
+                            // Set status
+                            document.querySelectorAll('.status-option').forEach(option => {
+                                option.classList.remove('selected');
+                                if (bedRecord && option.dataset.status === bedRecord.status) {
+                                    option.classList.add('selected');
+                                } else if (!bedRecord && option.dataset.status === 'pending') { 
+                                     option.classList.add('selected');
+                                }
+                            });
+                            
+                            // Set notes
+                            document.getElementById('bedNotes').value = bedRecord?.notes || '';
+                            
+                            openModal('bedModal');
+                        }
+                    });
+                } else {
+                    // Handle adding a new bed to an existing department for the current day
+                    bedElement.addEventListener('click', function() {
+                        const departmentId = this.dataset.departmentId;
+                        
+                        const department = allDataForCurrentDate.departments.find(d => d.id === departmentId);
+                        
+                        if (department) {
+                            let newBedNumber;
+                            let isValidInput = false;
+                            while (!isValidInput) {
+                                newBedNumber = prompt(`Enter new bed number for ${department.name}:`);
+                                if (newBedNumber === null) { // User cancelled
+                                    isValidInput = true;
+                                    return;
+                                }
+                                const bedNum = parseInt(newBedNumber.trim());
+                                if (!isNaN(bedNum) && bedNum > 0 && !department.beds.includes(bedNum)) {
+                                    department.beds.push(bedNum);
+                                    department.beds.sort((a,b) => a-b); 
+                                    saveCurrentDayDataToFirebase(); // Save changes to Firebase
+                                    isValidInput = true;
+                                } else if (isNaN(bedNum) || bedNum <= 0) {
+                                    alert('Invalid input. Please enter a positive number.');
+                                } else if (department.beds.includes(bedNum)) {
+                                    alert(`Bed ${bedNum} already exists in ${department.name} for this day. Please enter a unique number.`);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
         }
+        
+        document.querySelectorAll('.status-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.status-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+        
+        document.getElementById('saveBedBtn').addEventListener('click', () => {
+            if (!selectedBed) return;
+            
+            const selectedStatus = document.querySelector('.status-option.selected')?.dataset.status || 'pending';
+            const notes = document.getElementById('bedNotes').value.trim();
+            
+            if (!allDataForCurrentDate.bedStatuses) {
+                allDataForCurrentDate.bedStatuses = {};
+            }
+            if (!allDataForCurrentDate.bedStatuses[selectedBed.departmentId]) {
+                allDataForCurrentDate.bedStatuses[selectedBed.departmentId] = {};
+            }
+            
+            allDataForCurrentDate.bedStatuses[selectedBed.departmentId][selectedBed.bedNumber] = {
+                status: selectedStatus,
+                notes: notes
+            };
+            
+            saveCurrentDayDataToFirebase(); // Save changes to Firebase
+            closeModal('bedModal');
+            selectedBed = null; 
+        });
+        
+        document.getElementById('cancelBedBtn').addEventListener('click', () => {
+            closeModal('bedModal');
+            selectedBed = null;
+        });
+        
+        // --- Copy Previous Day Functionality ---
+        copyPreviousDayBtn.addEventListener('click', async () => {
+            const password = prompt('Enter password to copy previous day\'s data:');
+            if (password === ADMIN_PASSWORD) {
+                const currentDayDate = new Date(currentDate); 
+                const prevDayDate = new Date(currentDate);
+                prevDayDate.setDate(prevDayDate.getDate() - 1);
+                
+                const currentDayDataKey = formatDateForData(currentDayDate);
+                const prevDayDataKey = formatDateForData(prevDayDate);
 
-        function showBonusQuestion() {
-            bonusAsked = true;
-            elements.question.innerHTML = '<span class="bonus-question">BONUS LIE DETECTOR:</span> Are you lying?';
-            elements.progress.textContent = "Final Verification";
-            elements.buttons.innerHTML = `
-                <button class="yes-btn" onclick="handleLie(true)">YES</button>
-                <button class="no-btn" onclick="handleLie(false)">NO</button>
-            `;
-        }
+                try {
+                    const snapshot = await dailyRecordsRef.child(prevDayDataKey).once('value');
+                    const prevDayRecord = snapshot.val();
 
-        function handleLie(isLying) {
-            if (isLying) {
-                score = 8;
-                elements.question.innerHTML = "🚩 Lies detected! Adjusting score...";
+                    if (!prevDayRecord || (prevDayRecord.departments?.length === 0 && Object.keys(prevDayRecord.bedStatuses || {}).length === 0)) {
+                        alert("No data found for the previous day to copy.");
+                        return;
+                    }
+
+                    if (confirm("Are you sure you want to copy the previous day's data? All copied beds will be set to 'Pending' status. 'D.C / TRF' beds will not be copied.")) {
+                        
+                        const newDepartmentsForCurrentDay = [];
+                        const newBedStatusesForCurrentDay = {};
+
+                        const departmentsToCopy = prevDayRecord.departments || [];
+                        const bedStatusesToCopy = prevDayRecord.bedStatuses || {};
+
+                        departmentsToCopy.forEach(prevDept => {
+                            const copiedDept = JSON.parse(JSON.stringify(prevDept)); 
+                            copiedDept.beds = []; 
+
+                            newBedStatusesForCurrentDay[copiedDept.id] = {}; 
+
+                            const prevDeptBedStatuses = bedStatusesToCopy[prevDept.id] || {};
+
+                            prevDept.beds.forEach(bedNumber => {
+                                const prevBedData = prevDeptBedStatuses[bedNumber];
+
+                                if (prevBedData?.status !== 'dc-trf') {
+                                    copiedDept.beds.push(bedNumber); 
+                                    
+                                    newBedStatusesForCurrentDay[copiedDept.id][bedNumber] = {
+                                        status: 'pending', 
+                                        notes: prevBedData?.notes || '' 
+                                    };
+                                }
+                            });
+
+                            if (copiedDept.beds.length > 0) {
+                                newDepartmentsForCurrentDay.push(copiedDept);
+                            }
+                        });
+
+                        allDataForCurrentDate.departments = newDepartmentsForCurrentDay;
+                        allDataForCurrentDate.bedStatuses = newBedStatusesForCurrentDay;
+
+                        saveCurrentDayDataToFirebase(); // Save the copied data to Firebase for the current day
+                        alert("Previous day's data copied successfully! (D.C / TRF patients were not copied, and other beds are now 'Pending').");
+                    }
+                } catch (error) {
+                    console.error("Error copying previous day's data:", error);
+                    alert("Error copying data. Please try again.");
+                }
             } else {
-                elements.question.innerHTML = "✅ Truth verified! Proceeding...";
+                alert('Incorrect password. Data not copied.');
             }
-            setTimeout(showFinalResult, 1500);
-        }
+        });
+        
+        // --- Firebase Realtime Listener ---
+        let currentDayListener = null; // To store the active listener
+        
+        function listenForDailyUpdates() {
+            const dateKey = formatDateForData(currentDate);
 
-        function showFinalResult() {
-            elements.container.style.display = 'none';
-            elements.result.style.display = 'block';
-            elements.score.textContent = score;
-
-            let result;
-            if (score <= 3) {
-                result = {
-                    title: "🚨 DON'T TEXT! 🚨",
-                    text: `${score}/10: Put the phone down! Better chances winning the lottery!`
-                };
-            } else if (score <= 6) {
-                result = {
-                    title: "🤷 ASK A FRIEND 🤷",
-                    text: `${score}/10: This needs a group chat conference!`
-                };
-            } else if (score <= 8) {
-                result = {
-                    title: "😎 PLAY IT COOL 😎",
-                    text: `${score}/10: Text about something boring like:<br>"Did you see that email?"`
-                };
-            } else {
-                result = {
-                    title: "💘 TEXT NOW! 💘",
-                    text: `${score}/10: She's waiting! Don't screw this up!`
-                };
+            // Detach previous listener if it exists
+            if (currentDayListener) {
+                currentDayListener.off(); // Detach the 'value' listener
             }
 
-            elements.title.textContent = result.title;
-            elements.text.innerHTML = result.text;
-            elements.pickup.textContent = `Try this line: "${pickupLines[Math.floor(Math.random() * pickupLines.length)]}"`;
+            // Attach new listener for the current date's data
+            currentDayListener = dailyRecordsRef.child(dateKey);
+            currentDayListener.on('value', (snapshot) => {
+                const data = snapshot.val();
+                // Update the local allDataForCurrentDate with data from Firebase
+                allDataForCurrentDate = data || { departments: [], bedStatuses: {} };
+                renderDepartments(); // Re-render the UI with the fetched data
+            }, (error) => {
+                console.error("Error fetching daily records:", error);
+                alert("Error fetching data from server. Please refresh or try again.");
+            });
         }
 
-        function restartQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            bonusAsked = false;
-            elements.container.style.display = 'block';
-            elements.result.style.display = 'none';
-            elements.buttons.innerHTML = `
-                <button class="yes-btn" onclick="answerQuestion(true)">YES</button>
-                <button class="no-btn" onclick="answerQuestion(false)">NO</button>
-            `;
-            updateQuestion();
-        }
+        // --- Initialization ---
+        
+        // Event listener for the start button
+        startButton.addEventListener('click', () => {
+            initialScreen.style.display = 'none'; 
+            mainContainer.style.display = 'block'; 
+            
+            // Authenticate anonymously when the app starts
+            auth.signInAnonymously()
+                .then(() => {
+                    console.log("Signed in anonymously to Firebase.");
+                    updateDateDisplay(); // Start displaying and listening for data
+                })
+                .catch((error) => {
+                    console.error("Error signing in anonymously:", error);
+                    alert("Failed to connect to the tracking system. Please check your internet connection.");
+                });
+        });
 
-        function updateQuestion() {
-            elements.question.textContent = questions[currentQuestion];
-            elements.progress.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
-        }
+        // Initial call to hide main container on load until start button is clicked
+        mainContainer.style.display = 'none';
+
     </script>
 </body>
 </html>
